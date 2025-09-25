@@ -1,0 +1,22 @@
+
+name: "Param Input" 
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployEnv:
+        description: 'inputParam'
+        required: true
+        default: 'nonprd'
+        type: choice
+        options:
+        - nonprd
+        - prd
+
+Jobs:
+  example:
+    name: 'echo example'
+    runs-on: ubuntu-latest
+    steps:
+      - name: example
+        run: echo {{ github.event.inputs.inputParam }}
